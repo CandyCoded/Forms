@@ -2,6 +2,8 @@
 
 > Components used to simplify the handling of form inputs in Unity.
 
+[![npm](https://img.shields.io/npm/v/xyz.candycoded.forms)](https://www.npmjs.com/package/xyz.candycoded.form)
+
 ## Installation
 
 ### Direct Install
