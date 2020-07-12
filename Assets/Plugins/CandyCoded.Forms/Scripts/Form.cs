@@ -49,9 +49,19 @@ namespace CandyCoded.Forms
                 return;
             }
 
+            var selectable = _eventSystem.currentSelectedGameObject.GetComponent<Selectable>();
+
+            var allSelectable = _eventSystem.currentSelectedGameObject.GetComponentInParent<Form>()
+                .GetComponentsInChildren<Selectable>();
+
+            if (!allSelectable.Contains(selectable))
+            {
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                HandleTabPress();
+                HandleTabPress(selectable, allSelectable);
             }
 
             if (Input.GetKeyDown(KeyCode.Return))
@@ -61,13 +71,8 @@ namespace CandyCoded.Forms
 
         }
 
-        private void HandleTabPress()
+        private void HandleTabPress(Selectable selectable, Selectable[] allSelectable)
         {
-
-            var selectable = _eventSystem.currentSelectedGameObject.GetComponent<Selectable>();
-
-            var allSelectable = _eventSystem.currentSelectedGameObject.GetComponentInParent<Form>()
-                .GetComponentsInChildren<Selectable>();
 
             var prevSelectable = selectable.FindSelectableOnUp() ?? allSelectable.Last();
             var nextSelectable = selectable.FindSelectableOnDown() ?? allSelectable.First();
