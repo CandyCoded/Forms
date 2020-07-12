@@ -21,6 +21,8 @@ namespace CandyCoded.Forms
 
         private object _value;
 
+        public Form parentForm { get; private set; }
+
         public new string name
         {
             get
@@ -104,6 +106,13 @@ namespace CandyCoded.Forms
 
                 _value = value;
             }
+        }
+
+        private void Awake()
+        {
+
+            parentForm = gameObject.GetComponentInParent<Form>();
+
         }
 
         public void SetStringValue(string value)
