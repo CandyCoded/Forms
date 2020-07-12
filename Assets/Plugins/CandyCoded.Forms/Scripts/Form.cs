@@ -93,6 +93,13 @@ namespace CandyCoded.Forms
 
         }
 
+        public IEnumerable<Form> GetChildForms()
+        {
+
+            return gameObject.GetComponentsInChildren<Form>().Where(form => !form.Equals(this));
+
+        }
+
         public Dictionary<string, object> GetFormRawValues()
         {
 
