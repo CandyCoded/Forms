@@ -58,9 +58,7 @@ namespace CandyCoded.Forms
         public Dictionary<string, object> GetFormRawValues()
         {
 
-            return gameObject.GetComponentsInChildren<FormField>()
-                .Where(field => field.name != "" && field.parentForm.Equals(this))
-                .ToDictionary(field => field.name, field => field.value);
+            return GetChildFormFields().ToDictionary(field => field.name, field => field.value);
 
         }
 
@@ -83,7 +81,7 @@ namespace CandyCoded.Forms
         public void LoadFormRawValues(Dictionary<string, object> values)
         {
 
-            var formFields = gameObject.transform.GetComponentsInChildren<FormField>();
+            var formFields = GetChildFormFields();
 
             foreach (var value in values)
             {
@@ -107,7 +105,7 @@ namespace CandyCoded.Forms
         public void LoadFormValues<T>(T values)
         {
 
-            var formFields = gameObject.transform.GetComponentsInChildren<FormField>();
+            var formFields = GetChildFormFields();
 
             foreach (var fieldInfo in values.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
             {
