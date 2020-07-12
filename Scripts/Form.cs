@@ -50,7 +50,8 @@ namespace CandyCoded.Forms
         public Dictionary<string, object> GetFormRawValues()
         {
 
-            return gameObject.GetComponentsInChildren<FormField>().Where(field => field.name != "")
+            return gameObject.GetComponentsInChildren<FormField>()
+                .Where(field => field.name != "" && field.parentForm.Equals(this))
                 .ToDictionary(field => field.name, field => field.value);
 
         }
