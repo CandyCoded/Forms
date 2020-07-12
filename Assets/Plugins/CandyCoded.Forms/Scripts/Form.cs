@@ -1,9 +1,11 @@
 // Copyright (c) Scott Doxey. All Rights Reserved. Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -13,6 +15,11 @@ namespace CandyCoded.Forms
     [AddComponentMenu("CandyCoded / Forms / Form")]
     public class Form : MonoBehaviour
     {
+
+        public SubmitEvent FormSubmitted;
+
+        [SerializeField]
+        public Button _submitButton;
 
         private EventSystem _eventSystem;
 
@@ -25,20 +32,37 @@ namespace CandyCoded.Forms
 
             _parentForm = gameObject.GetComponentsInParent<Form>().FirstOrDefault(form => !form.Equals(this));
 
+            if (_submitButton)
+            {
+
+                _submitButton.onClick.AddListener(HandleReturnPress);
+
+            }
+
         }
 
         private void Update()
         {
 
-            if (_eventSystem.currentSelectedGameObject == null)
+            if (_eventSystem.currentSelectedGameObject == null || _parentForm != null)
             {
                 return;
             }
 
-            if (!Input.GetKeyDown(KeyCode.Tab) || _parentForm != null)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                return;
+                HandleTabPress();
             }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                HandleReturnPress();
+            }
+
+        }
+
+        private void HandleTabPress()
+        {
 
             var selectable = _eventSystem.currentSelectedGameObject.GetComponent<Selectable>();
 
@@ -53,6 +77,13 @@ namespace CandyCoded.Forms
                 : nextSelectable;
 
             _eventSystem.SetSelectedGameObject(next.gameObject, null);
+
+        }
+
+        private void HandleReturnPress()
+        {
+
+            FormSubmitted?.Invoke(GetFormRawValues());
 
         }
 
@@ -149,6 +180,12 @@ namespace CandyCoded.Forms
                 }
 
             }
+
+        }
+
+        [Serializable]
+        public class SubmitEvent : UnityEvent<Dictionary<string, object>>
+        {
 
         }
 
