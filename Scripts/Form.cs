@@ -30,15 +30,20 @@ namespace CandyCoded.Forms
         private void Update()
         {
 
-            if (_eventSystem.currentSelectedGameObject == null)
+            if (_eventSystem.currentSelectedGameObject == null || _parentForm != null)
             {
                 return;
             }
 
-            if (!Input.GetKeyDown(KeyCode.Tab) || _parentForm != null)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                return;
+                HandleTabPress();
             }
+
+        }
+
+        private void HandleTabPress()
+        {
 
             var selectable = _eventSystem.currentSelectedGameObject.GetComponent<Selectable>();
 
