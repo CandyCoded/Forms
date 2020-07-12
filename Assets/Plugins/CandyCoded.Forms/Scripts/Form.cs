@@ -32,13 +32,6 @@ namespace CandyCoded.Forms
 
             _parentForm = gameObject.GetComponentsInParent<Form>().FirstOrDefault(form => !form.Equals(this));
 
-            if (_submitButton)
-            {
-
-                _submitButton.onClick.AddListener(HandleReturnPress);
-
-            }
-
         }
 
         private void Update()
@@ -183,6 +176,30 @@ namespace CandyCoded.Forms
                     }
 
                 }
+
+            }
+
+        }
+
+        private void OnEnable()
+        {
+
+            if (_submitButton)
+            {
+
+                _submitButton.onClick.AddListener(HandleReturnPress);
+
+            }
+
+        }
+
+        private void OnDisable()
+        {
+
+            if (_submitButton)
+            {
+
+                _submitButton.onClick.RemoveListener(HandleReturnPress);
 
             }
 
