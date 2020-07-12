@@ -18,6 +18,9 @@ namespace CandyCoded.Forms
 
         public SubmitEvent FormSubmitted;
 
+        [SerializeField]
+        public Button _submitButton;
+
         private EventSystem _eventSystem;
 
         private Form _parentForm;
@@ -28,6 +31,13 @@ namespace CandyCoded.Forms
             _eventSystem = EventSystem.current;
 
             _parentForm = gameObject.GetComponentsInParent<Form>().FirstOrDefault(form => !form.Equals(this));
+
+            if (_submitButton)
+            {
+
+                _submitButton.onClick.AddListener(HandleReturnPress);
+
+            }
 
         }
 
