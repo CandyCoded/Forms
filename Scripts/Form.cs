@@ -16,17 +16,21 @@ namespace CandyCoded.Forms
 
         private EventSystem _eventSystem;
 
+        private Form _parentForm;
+
         private void Awake()
         {
 
             _eventSystem = EventSystem.current;
+
+            _parentForm = gameObject.GetComponentsInParent<Form>().FirstOrDefault(form => !form.Equals(this));
 
         }
 
         private void Update()
         {
 
-            if (!Input.GetKeyDown(KeyCode.Tab))
+            if (!Input.GetKeyDown(KeyCode.Tab) || !_parentForm.Equals(null))
             {
                 return;
             }
