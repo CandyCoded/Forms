@@ -30,7 +30,7 @@ namespace CandyCoded.Forms
         private void Update()
         {
 
-            if (!Input.GetKeyDown(KeyCode.Tab) || !_parentForm.Equals(null))
+            if (!Input.GetKeyDown(KeyCode.Tab) || _parentForm != null)
             {
                 return;
             }
