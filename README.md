@@ -45,7 +45,7 @@
 
 ## Usage
 
-First create a class with the same fields as the form.
+First create a class with the same field names (and data types) as the form.
 
 ```csharp
 public class Profile
@@ -57,14 +57,14 @@ public class Profile
 }
 ```
 
-Then add a serialize field to your MonoBehaviour to store a reference to the form component.
+Add a `Form` property to a MonoBehaviour for storing a reference to the `Form` component.
 
 ```csharp
 [SerializeField]
 private Form _form;
 ```
 
-Then populate the fields with exisiting values (if applicable).
+Populate the fields with exisiting values (if applicable).
 
 ```csharp
 public void Start()
@@ -98,13 +98,20 @@ public void Start()
 }
 ```
 
-Then, on submit, use `Newtonsoft.Json` to convert the values into a JSON object.
+Create a submit event handler that takes `Dictionary<string, object>` as it's only property.
 
 ```csharp
-public void Submit()
+public void SubmitForm(Dictionary<string, object> formRawValues)
 {
 
+    Debug.Log(JsonConvert.SerializeObject(formRawValues));
     Debug.Log(JsonConvert.SerializeObject(_form.GetFormValues<Profile>()));
 
 }
 ```
+
+Attach that method to the form submitted event handler on the `Form` component (see screenshot below).
+
+**Note:** A button can also be assigned to the form as the primary submit button (also see screenshot below).
+
+<img src="Screenshots/submit-form.png" width="400">
