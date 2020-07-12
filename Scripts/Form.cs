@@ -30,6 +30,11 @@ namespace CandyCoded.Forms
         private void Update()
         {
 
+            if (_eventSystem.currentSelectedGameObject == null)
+            {
+                return;
+            }
+
             if (!Input.GetKeyDown(KeyCode.Tab) || _parentForm != null)
             {
                 return;
