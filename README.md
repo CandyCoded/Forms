@@ -81,6 +81,23 @@ public void Start()
 }
 ```
 
+Data can also be loaded via a `Dictionary<string, object>` object.
+
+```csharp
+public void Start()
+{
+
+    _form.LoadFormRawValues(new Dictionary<string, object>
+      {
+          { "active", true },
+          { "firstName", "Scott" },
+          { "lastName", "Doxey" },
+          { "age", 36 },
+      });
+
+}
+```
+
 Then, on submit, use `Newtonsoft.Json` to convert the values into a JSON object.
 
 ```csharp
