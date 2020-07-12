@@ -1,9 +1,11 @@
 // Copyright (c) Scott Doxey. All Rights Reserved. Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -13,6 +15,8 @@ namespace CandyCoded.Forms
     [AddComponentMenu("CandyCoded / Forms / Form")]
     public class Form : MonoBehaviour
     {
+
+        public SubmitEvent FormSubmitted;
 
         private EventSystem _eventSystem;
 
@@ -40,6 +44,11 @@ namespace CandyCoded.Forms
                 HandleTabPress();
             }
 
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                HandleReturnPress();
+            }
+
         }
 
         private void HandleTabPress()
@@ -58,6 +67,13 @@ namespace CandyCoded.Forms
                 : nextSelectable;
 
             _eventSystem.SetSelectedGameObject(next.gameObject, null);
+
+        }
+
+        private void HandleReturnPress()
+        {
+
+            FormSubmitted?.Invoke(GetFormRawValues());
 
         }
 
@@ -154,6 +170,12 @@ namespace CandyCoded.Forms
                 }
 
             }
+
+        }
+
+        [Serializable]
+        public class SubmitEvent : UnityEvent<Dictionary<string, object>>
+        {
 
         }
 
