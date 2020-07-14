@@ -18,7 +18,6 @@ namespace CandyCoded.Forms
 
         public SubmitEvent FormSubmitted;
 
-        [SerializeField]
         public Button _submitButton;
 
         private EventSystem _eventSystem;
