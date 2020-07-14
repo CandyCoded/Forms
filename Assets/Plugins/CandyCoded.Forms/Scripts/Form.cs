@@ -18,7 +18,7 @@ namespace CandyCoded.Forms
 
         public SubmitEvent FormSubmitted;
 
-        public Button _submitButton;
+        public Button submitButton;
 
         private EventSystem _eventSystem;
 
@@ -190,10 +190,10 @@ namespace CandyCoded.Forms
         private void OnEnable()
         {
 
-            if (_submitButton)
+            if (submitButton)
             {
 
-                _submitButton.onClick.AddListener(HandleReturnPress);
+                submitButton.onClick.AddListener(HandleReturnPress);
 
             }
 
@@ -202,10 +202,10 @@ namespace CandyCoded.Forms
         private void OnDisable()
         {
 
-            if (_submitButton)
+            if (submitButton)
             {
 
-                _submitButton.onClick.RemoveListener(HandleReturnPress);
+                submitButton.onClick.RemoveListener(HandleReturnPress);
 
             }
 
