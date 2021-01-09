@@ -79,28 +79,43 @@ namespace CandyCoded.Forms
                 if (gameObject.TryGetComponent<InputField>(out var inputField))
                 {
 
-                    inputField.text = (string)value;
+                    inputField.text = value.ToString();
 
                 }
 
                 if (gameObject.TryGetComponent<Toggle>(out var toggle))
                 {
 
-                    toggle.isOn = (bool)value;
+                    if (bool.TryParse(value.ToString(), out var valueBool))
+                    {
+
+                        toggle.isOn = valueBool;
+
+                    }
 
                 }
 
                 if (gameObject.TryGetComponent<Dropdown>(out var dropdown))
                 {
 
-                    dropdown.value = (int)value;
+                    if (int.TryParse(value.ToString(), out var valueInt))
+                    {
+
+                        dropdown.value = valueInt;
+
+                    }
 
                 }
 
                 if (gameObject.TryGetComponent<Slider>(out var slider))
                 {
 
-                    slider.value = (float)value;
+                    if (float.TryParse(value.ToString(), out var valueFloat))
+                    {
+
+                        slider.value = valueFloat;
+
+                    }
 
                 }
 

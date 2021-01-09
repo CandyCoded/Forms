@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -16,7 +17,9 @@ namespace CandyCoded.Forms
     public class Form : MonoBehaviour
     {
 
-        public SubmitEvent FormSubmitted;
+        public SubmitEventObject FormSubmittedObject;
+
+        public SubmitEventJSON FormSubmittedJSON;
 
         public Button submitButton;
 
@@ -80,7 +83,9 @@ namespace CandyCoded.Forms
         private void HandleReturnPress()
         {
 
-            FormSubmitted?.Invoke(GetFormRawValues());
+            FormSubmittedObject?.Invoke(GetFormRawValues());
+
+            FormSubmittedJSON?.Invoke(ToJSON());
 
         }
 
@@ -119,6 +124,34 @@ namespace CandyCoded.Forms
             }
 
             return newObject;
+
+        }
+
+        public string ToJSON()
+        {
+
+            return JsonConvert.SerializeObject(GetFormRawValues());
+
+        }
+
+        public string ToJSON<T>() where T : class, new()
+        {
+
+            return JsonConvert.SerializeObject(GetFormValues<T>());
+
+        }
+
+        public void LoadFromJSON(string json)
+        {
+
+            LoadFormRawValues(JsonConvert.DeserializeObject<Dictionary<string, object>>(json));
+
+        }
+
+        public void LoadFromJSON<T>(string json)
+        {
+
+            LoadFormValues(JsonConvert.DeserializeObject<T>(json));
 
         }
 
@@ -212,7 +245,13 @@ namespace CandyCoded.Forms
         }
 
         [Serializable]
-        public class SubmitEvent : UnityEvent<Dictionary<string, object>>
+        public class SubmitEventObject : UnityEvent<Dictionary<string, object>>
+        {
+
+        }
+
+        [Serializable]
+        public class SubmitEventJSON : UnityEvent<string>
         {
 
         }

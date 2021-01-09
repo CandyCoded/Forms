@@ -81,6 +81,17 @@ public void Start()
 }
 ```
 
+Data can also be loaded via a JSON `string` object.
+
+```csharp
+public void Start()
+{
+
+    _form.LoadFromJSON(jsonString);
+
+}
+```
+
 Data can also be loaded via a `Dictionary<string, object>` object.
 
 ```csharp
@@ -101,11 +112,22 @@ public void Start()
 Create a submit event handler that takes `Dictionary<string, object>` as it's only property.
 
 ```csharp
-public void SubmitForm(Dictionary<string, object> formRawValues)
+public void SubmitFormObject(Dictionary<string, object> formRawValues)
 {
 
+    Debug.Log(formRawValues);
     Debug.Log(JsonConvert.SerializeObject(formRawValues));
-    Debug.Log(JsonConvert.SerializeObject(_form.GetFormValues<Profile>()));
+
+}
+```
+
+Or a submit event handler that takes `string` as it's only property.
+
+```csharp
+public void SubmitFormJSON(string json)
+{
+
+    Debug.Log(json);
 
 }
 ```
