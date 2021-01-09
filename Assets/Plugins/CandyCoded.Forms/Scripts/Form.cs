@@ -17,7 +17,9 @@ namespace CandyCoded.Forms
     public class Form : MonoBehaviour
     {
 
-        public SubmitEvent FormSubmitted;
+        public SubmitEventObject FormSubmittedObject;
+
+        public SubmitEventJSON FormSubmittedJSON;
 
         public Button submitButton;
 
@@ -81,7 +83,9 @@ namespace CandyCoded.Forms
         private void HandleReturnPress()
         {
 
-            FormSubmitted?.Invoke(GetFormRawValues());
+            FormSubmittedObject?.Invoke(GetFormRawValues());
+
+            FormSubmittedJSON?.Invoke(ToJSON());
 
         }
 
@@ -241,7 +245,13 @@ namespace CandyCoded.Forms
         }
 
         [Serializable]
-        public class SubmitEvent : UnityEvent<Dictionary<string, object>>
+        public class SubmitEventObject : UnityEvent<Dictionary<string, object>>
+        {
+
+        }
+
+        [Serializable]
+        public class SubmitEventJSON : UnityEvent<string>
         {
 
         }
