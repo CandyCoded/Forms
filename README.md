@@ -6,10 +6,6 @@
 
 ## Installation
 
-### Direct Install
-
-[Download latest `CandyCoded.Forms.unitypackage` or `CandyCoded.Forms.dll`](https://github.com/CandyCoded/Forms/releases)
-
 ### Unity Package Manager
 
 <https://docs.unity3d.com/Packages/com.unity.package-manager-ui@2.0/manual/index.html>

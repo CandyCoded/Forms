@@ -1,7 +1,3 @@
-build:
-	Scripts/build_package.sh
-	Scripts/build_dll.sh
-
 test:
 	echo "Error: no tests specified"
 
