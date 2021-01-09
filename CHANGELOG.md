@@ -1,6 +1,17 @@
 # Changelog
 
-## [v1.1.0] - 2020-07-19
+## [v2.0.0](https://github.com/CandyCoded/Forms/tree/v2.0.0) - (2021-01-09)
+
+Note: This package can no longer be installed via a `unitypackage` or `dll` file.
+
+[Full Changelog](https://github.com/CandyCoded/Forms/compare/v1.1.0...v2.0.0)
+
+- [feat] LoadFromJSON [#10](https://github.com/CandyCoded/Forms/pull/10)
+- [feat] Added com.unity.nuget.newtonsoft-json package. [#9](https://github.com/CandyCoded/Forms/pull/9)
+
+## [v1.1.0](https://github.com/CandyCoded/Forms/tree/v1.1.0) - (2020-07-19)
+
+[Full Changelog](https://github.com/CandyCoded/Forms/compare/v1.0.0...v1.1.0)
 
 - [feat] Added method for returning child forms. [#8](https://github.com/CandyCoded/Forms/pull/8)
 - [hotfix] Removed event listener on gameobject disable. [#7](https://github.com/CandyCoded/Forms/pull/7)
@@ -11,6 +22,8 @@
 - [hotfix] Fixed issue with tabbing through a form with nested forms. [#2](https://github.com/CandyCoded/Forms/pull/2)
 - [feat] Store the parent form of fields to allow nesting forms. [#1](https://github.com/CandyCoded/Forms/pull/1)
 
-## [v1.0.0] - 2020-07-10
+## [v1.0.0](https://github.com/CandyCoded/Forms/tree/v1.0.0) - (2020-07-10)
 
 - Initial release! 🎉
+
+_This changelog was generated with **[generate-local-changelog](https://github.com/neogeek/generate-local-changelog)**_
