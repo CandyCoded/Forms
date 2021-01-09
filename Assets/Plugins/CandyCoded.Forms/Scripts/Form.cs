@@ -130,10 +130,24 @@ namespace CandyCoded.Forms
 
         }
 
+        public string ToJSON<T>() where T : class, new()
+        {
+
+            return JsonConvert.SerializeObject(GetFormValues<T>());
+
+        }
+
         public void LoadFromJSON(string json)
         {
 
             LoadFormRawValues(JsonConvert.DeserializeObject<Dictionary<string, object>>(json));
+
+        }
+
+        public void LoadFromJSON<T>(string json)
+        {
+
+            LoadFormValues(JsonConvert.DeserializeObject<T>(json));
 
         }
 
