@@ -1,5 +1,11 @@
 # Changelog
 
+## [v2.1.0](https://github.com/CandyCoded/Forms/tree/v2.1.0) - (2021-01-13)
+
+[Full Changelog](https://github.com/CandyCoded/Forms/compare/v2.0.0...v2.1.0)
+
+- [feat] Added support for OnValueChanged events. [#11](https://github.com/CandyCoded/Forms/pull/11)
+
 ## [v2.0.0](https://github.com/CandyCoded/Forms/tree/v2.0.0) - (2021-01-09)
 
 Note: This package can no longer be installed via a `unitypackage` or `dll` file.
