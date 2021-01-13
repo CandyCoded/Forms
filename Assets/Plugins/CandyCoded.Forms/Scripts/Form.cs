@@ -17,9 +17,13 @@ namespace CandyCoded.Forms
     public class Form : MonoBehaviour
     {
 
-        public SubmitEventObject FormSubmittedObject;
+        public FormEventObjectEvent FormChangedObject;
 
-        public SubmitEventJSON FormSubmittedJSON;
+        public FormEventJSONEvent FormChangedJSON;
+
+        public FormEventObjectEvent FormSubmittedObject;
+
+        public FormEventJSONEvent FormSubmittedJSON;
 
         public Button submitButton;
 
@@ -62,6 +66,44 @@ namespace CandyCoded.Forms
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 HandleReturnPress();
+            }
+
+        }
+
+        private void OnEnable()
+        {
+
+            foreach (var formField in GetChildFormFields())
+            {
+
+                formField.OnValueChanged.AddListener(HandleValueChanged);
+
+            }
+
+            if (submitButton)
+            {
+
+                submitButton.onClick.AddListener(HandleReturnPress);
+
+            }
+
+        }
+
+        private void OnDisable()
+        {
+
+            foreach (var formField in GetChildFormFields())
+            {
+
+                formField.OnValueChanged.RemoveListener(HandleValueChanged);
+
+            }
+
+            if (submitButton)
+            {
+
+                submitButton.onClick.RemoveListener(HandleReturnPress);
+
             }
 
         }
@@ -193,7 +235,9 @@ namespace CandyCoded.Forms
                     if (fieldInfo.Name.Equals(formField.name))
                     {
 
+                        formField.RemoveOnValueChangedEvent();
                         formField.value = fieldInfo.GetValue(values);
+                        formField.AddOnValueChangedEvent();
 
                     }
 
@@ -220,38 +264,23 @@ namespace CandyCoded.Forms
 
         }
 
-        private void OnEnable()
+        private void HandleValueChanged()
         {
 
-            if (submitButton)
-            {
+            FormChangedObject?.Invoke(GetFormRawValues());
 
-                submitButton.onClick.AddListener(HandleReturnPress);
-
-            }
-
-        }
-
-        private void OnDisable()
-        {
-
-            if (submitButton)
-            {
-
-                submitButton.onClick.RemoveListener(HandleReturnPress);
-
-            }
+            FormChangedJSON?.Invoke(ToJSON());
 
         }
 
         [Serializable]
-        public class SubmitEventObject : UnityEvent<Dictionary<string, object>>
+        public class FormEventObjectEvent : UnityEvent<Dictionary<string, object>>
         {
 
         }
 
         [Serializable]
-        public class SubmitEventJSON : UnityEvent<string>
+        public class FormEventJSONEvent : UnityEvent<string>
         {
 
         }
