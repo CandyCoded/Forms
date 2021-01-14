@@ -1,5 +1,11 @@
 # Changelog
 
+## [v2.1.1](https://github.com/CandyCoded/Forms/tree/v2.1.1) - (2021-01-14)
+
+[Full Changelog](https://github.com/CandyCoded/Forms/compare/v2.1.0...v2.1.1)
+
+- Prevent running update loop when selected object is not a child of a form. [#12](https://github.com/CandyCoded/Forms/pull/12)
+
 ## [v2.1.0](https://github.com/CandyCoded/Forms/tree/v2.1.0) - (2021-01-13)
 
 [Full Changelog](https://github.com/CandyCoded/Forms/compare/v2.0.0...v2.1.0)
