@@ -48,10 +48,17 @@ namespace CandyCoded.Forms
                 return;
             }
 
+            var parentFormOfCurrentSelectedGameObject =
+                _eventSystem.currentSelectedGameObject.GetComponentInParent<Form>();
+
+            if (parentFormOfCurrentSelectedGameObject == null)
+            {
+                return;
+            }
+
             var selectable = _eventSystem.currentSelectedGameObject.GetComponent<Selectable>();
 
-            var allSelectable = _eventSystem.currentSelectedGameObject.GetComponentInParent<Form>()
-                .GetComponentsInChildren<Selectable>();
+            var allSelectable = parentFormOfCurrentSelectedGameObject.GetComponentsInChildren<Selectable>();
 
             if (!allSelectable.Contains(selectable))
             {
