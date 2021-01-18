@@ -31,7 +31,7 @@
   },
   "scopedRegistries": [
     {
-      "name": "forms",
+      "name": "candycoded",
       "url": "https://registry.npmjs.com",
       "scopes": ["xyz.candycoded"]
     }
