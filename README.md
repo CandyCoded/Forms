@@ -83,7 +83,7 @@ Data can also be loaded via a JSON `string` object.
 public void Start()
 {
 
-    _form.LoadFromJSON(jsonString);
+    _form.LoadFromJSON<Profile>(jsonString);
 
 }
 ```
