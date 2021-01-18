@@ -1,5 +1,11 @@
 # Changelog
 
+## [v3.0.0](https://github.com/CandyCoded/Forms/tree/v3.0.0) - (2021-01-18)
+
+[Full Changelog](https://github.com/CandyCoded/Forms/compare/v2.1.1...v3.0.0)
+
+- [hotfix] Removed com.unity.nuget.newtonsoft-json package. [#13](https://github.com/CandyCoded/Forms/pull/13)
+
 ## [v2.1.1](https://github.com/CandyCoded/Forms/tree/v2.1.1) - (2021-01-14)
 
 [Full Changelog](https://github.com/CandyCoded/Forms/compare/v2.1.0...v2.1.1)

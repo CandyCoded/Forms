@@ -15,7 +15,7 @@
 ```json
 {
   "dependencies": {
-    "xyz.candycoded.forms": "https://github.com/CandyCoded/Forms.git#v2.1.1",
+    "xyz.candycoded.forms": "https://github.com/CandyCoded/Forms.git#v3.0.0",
     ...
   }
 }
@@ -26,7 +26,7 @@
 ```json
 {
   "dependencies": {
-    "xyz.candycoded.forms": "2.1.1",
+    "xyz.candycoded.forms": "3.0.0",
     ...
   },
   "scopedRegistries": [
