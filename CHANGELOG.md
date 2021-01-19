@@ -1,5 +1,11 @@
 # Changelog
 
+## [v3.1.0](https://github.com/CandyCoded/Forms/tree/v3.1.0) - (2021-01-19)
+
+[Full Changelog](https://github.com/CandyCoded/Forms/compare/v3.0.0...v3.1.0)
+
+- [feat] Added support for the New Unity Input System. [#15](https://github.com/CandyCoded/Forms/pull/15)
+
 ## [v3.0.0](https://github.com/CandyCoded/Forms/tree/v3.0.0) - (2021-01-18)
 
 [Full Changelog](https://github.com/CandyCoded/Forms/compare/v2.1.1...v3.0.0)
