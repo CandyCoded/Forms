@@ -1,7 +1,8 @@
 {
     "name": "CandyCoded.Forms",
     "references": [
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
