@@ -7,6 +7,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 using UnityEngine.UI;
 
 namespace CandyCoded.Forms
@@ -29,6 +32,26 @@ namespace CandyCoded.Forms
         private EventSystem _eventSystem;
 
         private Form _parentForm;
+
+#if ENABLE_INPUT_SYSTEM
+        private bool _isTabKeyDown => Keyboard.current.tabKey.wasPressedThisFrame;
+
+        private bool _isReturnKeyDown => Keyboard.current.enterKey.wasPressedThisFrame;
+
+        private bool _isLeftShiftHeld => Keyboard.current.leftShiftKey.isPressed;
+
+        private bool _isRightShiftHeld => Keyboard.current.rightShiftKey.isPressed;
+#else
+        private bool _isTabKeyDown => Input.GetKeyDown(KeyCode.Tab);
+
+        private bool _isReturnKeyDown => Input.GetKeyDown(KeyCode.Return);
+
+        private bool _isLeftShiftHeld => Input.GetKey(KeyCode.LeftShift);
+
+        private bool _isRightShiftHeld => Input.GetKey(KeyCode.RightShift);
+#endif
+
+        private bool _isShiftHeld => _isLeftShiftHeld || _isRightShiftHeld;
 
         private void Awake()
         {
@@ -64,12 +87,12 @@ namespace CandyCoded.Forms
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (_isTabKeyDown)
             {
                 HandleTabPress(selectable, allSelectable);
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (_isReturnKeyDown)
             {
                 HandleReturnPress();
             }
@@ -120,9 +143,7 @@ namespace CandyCoded.Forms
             var prevSelectable = selectable.FindSelectableOnUp() ?? allSelectable.Last();
             var nextSelectable = selectable.FindSelectableOnDown() ?? allSelectable.First();
 
-            var next = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)
-                ? prevSelectable
-                : nextSelectable;
+            var next = _isShiftHeld ? prevSelectable : nextSelectable;
 
             _eventSystem.SetSelectedGameObject(next.gameObject, null);
 
