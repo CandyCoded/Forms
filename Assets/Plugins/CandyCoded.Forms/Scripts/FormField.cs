@@ -7,6 +7,7 @@ using UnityEngine.UI;
 namespace CandyCoded.Forms
 {
 
+    [DefaultExecutionOrder(-1)]
     [AddComponentMenu("CandyCoded / Forms / Form Field")]
     public class FormField : MonoBehaviour
     {
