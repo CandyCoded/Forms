@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -199,21 +200,21 @@ namespace CandyCoded.Forms
         public string ToJSON()
         {
 
-            return JsonUtility.ToJson(GetFormRawValues());
+            return JsonConvert.SerializeObject(GetFormRawValues());
 
         }
 
         public string ToJSON<T>() where T : class, new()
         {
 
-            return JsonUtility.ToJson(GetFormValues<T>());
+            return JsonConvert.SerializeObject(GetFormValues<T>());
 
         }
 
         public void LoadFromJSON<T>(string json)
         {
 
-            LoadFormValues(JsonUtility.FromJson<T>(json));
+            LoadFormValues(JsonConvert.DeserializeObject<T>(json));
 
         }
 
