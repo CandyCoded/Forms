@@ -3,8 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -218,6 +218,13 @@ namespace CandyCoded.Forms
 
         }
 
+        public void LoadFromJSON(string json)
+        {
+
+            LoadFormRawValues(JsonConvert.DeserializeObject<Dictionary<string, object>>(json));
+
+        }
+
         public void LoadFormRawValues(Dictionary<string, object> values)
         {
 
@@ -245,43 +252,7 @@ namespace CandyCoded.Forms
         public void LoadFormValues<T>(T values)
         {
 
-            var formFields = GetChildFormFields();
-
-            foreach (var fieldInfo in values.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
-            {
-
-                foreach (var formField in formFields)
-                {
-
-                    if (fieldInfo.Name.Equals(formField.name))
-                    {
-
-                        formField.RemoveOnValueChangedEvent();
-                        formField.value = fieldInfo.GetValue(values);
-                        formField.AddOnValueChangedEvent();
-
-                    }
-
-                }
-
-            }
-
-            foreach (var propertyInfo in values.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-
-                foreach (var formField in formFields)
-                {
-
-                    if (propertyInfo.Name.Equals(formField.name))
-                    {
-
-                        formField.value = propertyInfo.GetValue(values);
-
-                    }
-
-                }
-
-            }
+            LoadFormRawValues(JToken.FromObject(values).ToObject<Dictionary<string, object>>());
 
         }
 
